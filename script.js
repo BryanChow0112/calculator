@@ -139,7 +139,6 @@ function evaluate() {
 function roundResult(number) {
   return Math.round(number * 1000000) / 1000000;
 }
-
 // Fix typo in operate function
 function operate(operator, a, b) {
   a = Number(a);
@@ -158,3 +157,6 @@ function operate(operator, a, b) {
       return null;
   }
 }
+
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+

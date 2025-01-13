@@ -1,7 +1,22 @@
-/* Import Roboto font */
+/* Imports */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
-/* Reset and base styles */
+/* CSS Variables */
+:root {
+  --bg-primary: #2c3e50;
+  --bg-calculator: #1a2634;
+  --text-primary: #ffffff;
+  --text-secondary: #8b949e;
+  --btn-operator: #8b949e;
+  --btn-clear: #ff5252;
+  --btn-delete: #2196f3;
+  --btn-equals: #4caf50;
+  --border-radius-lg: 2.5rem;
+  --border-radius-sm: 1.2rem;
+  --transition: 0.2s ease;
+}
+
+/* Reset Styles */
 * {
   margin: 0;
   padding: 0;
@@ -9,9 +24,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+/* Layout Styles */
 body {
   min-height: 100vh;
-  background: #2c3e50; /* Elegant dark blue background */
+  background: var(--bg-primary);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,10 +42,10 @@ body {
   padding: 2rem;
 }
 
-/* Calculator container */
+/* Calculator Container */
 .calculator {
-  background-color: #1a2634;
-  border-radius: 2.5rem;
+  background-color: var(--bg-calculator);
+  border-radius: var(--border-radius-lg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   padding: 2rem;
   width: 100%;
@@ -43,9 +59,8 @@ body {
   transform: translateY(-5px);
 }
 
-/* Display section */
+/* Display Section */
 .display {
-  background-color: #1a2634;
   padding: 1rem 1.5rem;
   margin-bottom: 0;
   text-align: right;
@@ -57,18 +72,18 @@ body {
 
 .previous-display {
   font-size: 1.6rem;
-  color: #8b949e;
+  color: var(--text-secondary);
   height: 2rem;
 }
 
 .current-display {
   font-size: 3.5rem;
-  color: #ffffff;
+  color: var(--text-primary);
   font-weight: 400;
   line-height: 1.2;
 }
 
-/* Keypad grid */
+/* Keypad Layout */
 .keypad {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -76,58 +91,59 @@ body {
   width: 100%;
 }
 
-/* Button styles */
+/* Button Base Styles */
 .key {
   background-color: #ffffff;
   border: none;
-  border-radius: 1.2rem;
+  border-radius: var(--border-radius-sm);
   font-size: 1.8rem;
   padding: 0;
   aspect-ratio: 1.4/1;
-  color: #1a2634;
+  color: var(--bg-calculator);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform var(--transition), filter var(--transition);
 }
 
-/* Special buttons */
+/* Button Variants */
 .span-2 {
   grid-column: span 2;
   aspect-ratio: 2.8/1;
   font-size: 1.6rem;
 }
 
-.key-clear {
-  background-color: #ff5252;
-  color: white;
-  border-radius: 1.5rem;
+.key-clear,
+.key-delete {
+  border-radius: var(--border-radius-sm);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
+.key-clear {
+  background-color: var(--btn-clear);
+}
 .key-delete {
-  background-color: #2196f3;
-  color: white;
-  border-radius: 1.5rem;
-  font-weight: 500;
+  background-color: var(--btn-delete);
 }
 
 [data-operator] {
-  background-color: #8b949e;
-  color: white;
+  background-color: var(--btn-operator);
+  color: var(--text-primary);
 }
 
 [data-number] {
   background-color: #ffffff;
-  color: #1a2634;
+  color: var(--bg-calculator);
 }
 
 #equalsKey {
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--btn-equals);
+  color: var(--text-primary);
 }
 
-/* Hover effects */
+/* Button Interactions */
 .key:hover {
   filter: brightness(0.9);
   transform: translateY(-2px);
@@ -138,24 +154,24 @@ body {
   filter: brightness(0.8);
 }
 
-/* Footer styles */
+/* Footer Styles */
 .footer {
   padding: 1rem;
   text-align: center;
-  color: #6c757d;
+  color: var(--text-secondary);
 }
 
 .footer a {
-  color: #339af0;
+  color: var(--btn-delete);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition);
 }
 
 .footer a:hover {
   color: #1c7ed6;
 }
 
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 480px) {
   .calculator {
     padding: 1.5rem;
