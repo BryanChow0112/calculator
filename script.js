@@ -43,6 +43,43 @@ clearButton.addEventListener("click", clear);
 deleteButton.addEventListener("click", deleteNumber);
 pointButton.addEventListener("click", appendPoint);
 
+// Add keyboard support - add this after your existing event listeners
+document.addEventListener("keydown", handleKeyboardInput);
+
+function handleKeyboardInput(e) {
+  // Numbers 0-9
+  if (e.key >= 0 && e.key <= 9) {
+    appendNumber(e.key);
+  }
+  // Operators
+  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
+    const operatorMap = {
+      "+": "+",
+      "-": "−", // Using the same symbol as in your HTML
+      "*": "×",
+      "/": "÷"
+    };
+    setOperation(operatorMap[e.key]);
+  }
+  // Enter or = for equals
+  if (e.key === "Enter" || e.key === "=") {
+    e.preventDefault(); // Prevent form submission
+    evaluate();
+  }
+  // Backspace for delete
+  if (e.key === "Backspace") {
+    deleteNumber();
+  }
+  // Escape or Delete for clear
+  if (e.key === "Escape" || e.key === "Delete") {
+    clear();
+  }
+  // Decimal point
+  if (e.key === ".") {
+    appendPoint();
+  }
+}
+
 function appendNumber(number) {
   if (currentDisplay.textContent === "0" || needScreenReset) {
     resetScreen();
